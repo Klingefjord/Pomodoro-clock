@@ -2,26 +2,41 @@
   <head>
     <title>Pomodoro Clock</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   <body>
-    <div id="break">
-      <h2>Break Length</h2>
-      <h2 id="break-time">5</h2>
-      <button id="break-plus">+</button>
-      <button id="break-minus">-</button>
-    </div>
-    <div id="pomodoro">
-      <h2>Pomodoro Length</h2>
-      <h2 id="pomodoro-time">25</h2>
-      <button id="pomodoro-plus">+</button>
-      <button id="pomodoro-minus">-</button>
-    </div>
-    <div id="clock">
+
+    <div id="circle">
+
       <h1 id="time">25:00</h1>
-      <h2 id="pause">Start</h2>
-      <h3 id="reset">Reset</h3>
+      <div id="pausediv">
+        <div id="play"></div>
+        <div id="pause1"></div>
+        <div id="pause2"></div>
+      </div>
+      <div id="spinner-wrapper">
     </div>
+
+    <div id="flex-row">
+      <div id="break">
+        <h2>Break</h2>
+        <h2><span id="break-plus">+ </span><span id="break-time"> 5 </span><span id="break-minus"> -</span></h2>
+      </div>
+
+      <div>
+        <h2 id="reset">Reset</h2>
+      </div>
+
+      <div id="pomodoro">
+        <h2>Pomodoro</h2>
+        <h2><span id="pomodoro-plus">+ </span><span id="pomodoro-time"> 25 </span><span id="pomodoro-minus"> -</span></h2>
+
+      </div>
+    </div>
+
     <script src="js/jquery.js"></script>
+    <script src="js/chart.js"></script>
     <script src="js/magic.js"></script>
+
   </body>
 </html>

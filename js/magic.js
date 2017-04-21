@@ -1,5 +1,5 @@
 var time = $("#time");
-var pause = $("#pause");
+var pause = $("#pausediv");
 var reset = $("#reset");
 var pomodoroTime = $("#pomodoro-time");
 var breakTime = $("#break-time");
@@ -10,11 +10,11 @@ var breakMinus = $("#break-minus");
 
 var bell = new Audio("assets/bell.mp3");
 
-var seconds = 2;
+var seconds = 1;
 var minutes = 0;
 var play = false;
 var pomodoro = true;
-var pomodoroLength = 25;
+var pomodoroLength = 1;
 var breakLength = 5;
 
 // Interval
@@ -38,6 +38,13 @@ function updateTime() {
       seconds--;
   }
   updateDOM();
+  console.log(minutes, seconds);
+  console.log((minutes + (seconds / 60)) / breakLength);
+  if (pomodoro) {
+    drawChart((((minutes + (seconds / 60)) / pomodoroLength) * 100), "white");
+  } else {
+    drawChart((((minutes + (seconds / 60)) / breakLength) * 100), "green");
+  }
 }
 
 function updateDOM() {
@@ -86,14 +93,28 @@ function updateParameters()  {
   }
 }
 
+function pauseIcon() {
+  $("#play").hide();
+  $("#pause1").show();
+  $("#pause2").show();
+}
+
+function playIcon() {
+  $("#play").show();
+  $("#pause1").hide();
+  $("#pause2").hide();
+}
+
 
 // Event listeners
 
 pause.click(function(){
   if (!play) {
     play = true;
+    pauseIcon();
   } else {
     play = false;
+    playIcon();
   }
 });
 
@@ -105,6 +126,8 @@ reset.click(function(){
   seconds = 0;
   minutes = 25;
   updateParameters();
+  playIcon();
+  drawChart(100, "transparent"); // clears pie chart
 });
 
 breakPlus.click(function(){
