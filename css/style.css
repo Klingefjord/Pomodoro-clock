@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
+body {
+  background-image: linear-gradient(to bottom, #0b343c, #021914);
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  user-select: none;
+}
+
 #circle {
   text-align: center;
   position: relative;
@@ -11,14 +19,6 @@
   border-radius: 225px;
   background-image: radial-gradient(circle at 50% 100%, #0a1e11, #112333);
   box-shadow: 0 0 40px 6px rgba(0, 0, 0, 0.5);
-}
-
-body {
-  background-image: linear-gradient(to bottom, #0b343c, #021914);
-  color: white;
-  font-family: 'Open Sans', sans-serif;
-  text-align: center;
-  user-select: none;
 }
 
 #time {
@@ -70,59 +70,11 @@ body {
   height: 460px;
   position: relative;
 }
-/*
-.pie {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  background: #08C;
-  border: 10px solid rgba(0,0,0,0.4);
-}
-
-.spinner {
-  border-radius: 225px 0 0 225px;
-  z-index: 200;
-  border-right: none;
-  animation: rota 10s linear infinite;
-}
-
-.mask {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  z-index: 300;
-  opacity: 1;
-  background: inherit;
-  animation: mask 10s steps(1, end) infinite;
-}
-
-.filler {
-  border-radius: 0 225px 225px 0;
-  z-index: 100;
-  border-left: none;
-  animation: fill 10s steps(1, end) infinite;
-  left: 50%;
-  opacity: 0;
-}
-
-@keyframes rota {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes fill {
-  0%        { opacity: 0; }
-  50%, 100% { opacity: 1; }
-}
-
-@keyframes mask {
-  0%        { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}*/
 
 #flex-row {
   position: relative;
   top: 100px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -132,8 +84,9 @@ body {
   flex: 1 0 0;
 }
 
-#reset {
-  flex: 1 0 0;
+#reset-div {
+  flex: 2 0 0;
+
 }
 
 #pomodoro {

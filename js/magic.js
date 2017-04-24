@@ -10,17 +10,17 @@ var breakMinus = $("#break-minus");
 
 var bell = new Audio("assets/bell.mp3");
 
-var seconds = 1;
-var minutes = 0;
+var seconds = 0;
+var minutes = 25;
 var play = false;
 var pomodoro = true;
-var pomodoroLength = 1;
+var pomodoroLength = 25;
 var breakLength = 5;
 
 // Interval
 
 setInterval(function(){
-  console.log("seconds");
+  console.log(play);
   if (play) {
     updateTime();
   }
@@ -38,8 +38,6 @@ function updateTime() {
       seconds--;
   }
   updateDOM();
-  console.log(minutes, seconds);
-  console.log((minutes + (seconds / 60)) / breakLength);
   if (pomodoro) {
     drawChart((((minutes + (seconds / 60)) / pomodoroLength) * 100), "white");
   } else {
@@ -93,6 +91,18 @@ function updateParameters()  {
   }
 }
 
+function resetEverything() {
+  pomodoroLength = 25;
+  breakLength = 5;
+  pomodoro = true;
+  play = false;
+  seconds = 0;
+  minutes = 25;
+  updateParameters();
+  playIcon();
+  drawChart(100, "transparent"); // clears pie chart
+}
+
 function pauseIcon() {
   $("#play").hide();
   $("#pause1").show();
@@ -119,31 +129,33 @@ pause.click(function(){
 });
 
 reset.click(function(){
-  pomodoroLength = 25;
-  breakLength = 5;
-  pomodoro = true;
-  play = false;
-  seconds = 0;
-  minutes = 25;
-  updateParameters();
-  playIcon();
-  drawChart(100, "transparent"); // clears pie chart
+  resetEverything();
 });
+
 
 breakPlus.click(function(){
   breakLength++;
+  if (!pomodoro) {
+    minutes++;
+  }
   updateParameters();
 });
 
 breakMinus.click(function(){
   if (breakLength > 1) {
     breakLength--;
+    if (!pomodoro) {
+      minutes--;
+    }
     updateParameters();
   }
 });
 
 pomodoroPlus.click(function(){
   pomodoroLength++;
+  if (pomodoro) {
+    minutes++;
+  }
   updateParameters();
 });
 
@@ -151,6 +163,9 @@ pomodoroMinus.click(function(){
   pomodoroTime.html(pomodoroLength);
   if (pomodoroLength > 1) {
     pomodoroLength--;
+    if (pomodoro) {
+      minutes--;
+    }
     updateParameters();
   }
 });
